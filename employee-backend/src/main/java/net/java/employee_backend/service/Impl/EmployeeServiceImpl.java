@@ -3,6 +3,7 @@ package net.java.employee_backend.service.Impl;
 import lombok.AllArgsConstructor;
 import net.java.employee_backend.dto.EmployeeDto;
 import net.java.employee_backend.entity.Employee;
+import net.java.employee_backend.exception.ResourceNotFoundException;
 import net.java.employee_backend.mapper.EmployeeMapper;
 import net.java.employee_backend.repository.EmployeeRepository;
 import net.java.employee_backend.service.EmployeeService;
@@ -17,5 +18,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee= EmployeeMapper.mapToEmployee(employeeDto);
         Employee savedEmployee= employeeRepository.save(employee);
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
+    }
+
+    @Override
+    public EmployeeDto getEmployeeById(Long employeeId) {
+        Employee employee=employeeRepository.findById(employeeId)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee is not existed with given id" + employeeId));
+
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 }

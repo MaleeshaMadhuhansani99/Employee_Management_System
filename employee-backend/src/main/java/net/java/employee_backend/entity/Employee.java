@@ -1,4 +1,4 @@
-﻿package net.java.employee_backend.entity;
+package net.java.employee_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
