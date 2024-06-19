@@ -2,10 +2,13 @@ package net.java.employee_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.java.employee_backend.dto.EmployeeDto;
+import net.java.employee_backend.entity.Employee;
 import net.java.employee_backend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 //can handle http request
@@ -26,6 +29,14 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId){
         EmployeeDto employeeDto=employeeService.getEmployeeById(employeeId);
         return ResponseEntity.ok(employeeDto);
+    }
+
+    //Build get all employees REST API
+    @GetMapping
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
+        List<EmployeeDto> employees=employeeService.getAllEmployees();
+        return ResponseEntity.ok(employees);
+
     }
 
 }
