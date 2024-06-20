@@ -2,6 +2,7 @@ package net.java.employee_backend.service;
 
 import net.java.employee_backend.dto.EmployeeDto;
 
+
 import java.util.List;
 
 public interface EmployeeService {
@@ -10,4 +11,6 @@ public interface EmployeeService {
     EmployeeDto getEmployeeById(Long employeeId);
 
     List<EmployeeDto> getAllEmployees();
+
+    EmployeeDto  updateEmployee(Long employeeId,EmployeeDto updatedEmployee);
 }
